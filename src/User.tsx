@@ -10,13 +10,10 @@ export const User = () => {
 
     async function fetchRandomUser() {
         try {
-            setTimeout(async () => {
-                const response = await fetch('https://ransdomuser.me/api/');
-                const data = await response.json();
-                const { name } = (data as any).results[0];
-                setName(name.first);
-            }, 4000);
-
+            const response = await fetch('https://ransdomuser.me/api/');
+            const data = await response.json();
+            const { name } = (data as any).results[0];
+            setName(name.first);
         } catch (err) {
             console.log(err)
         }
@@ -24,22 +21,8 @@ export const User = () => {
 
     return (
         <>
-            <Suspense fallback={<Error />}>
-                <b>User: { name }</b>
-            </Suspense>
+            <b>User: { name }</b>
         </>
     )
 
-};
-
-const Loading = () => {
-    return (
-        <span> Loading ... </span>
-    )
-};
-
-const Error = () => {
-    return (
-        <span> Error!!! </span>
-    )
 };
